@@ -31,7 +31,7 @@ class FunctionsLayer
             ),
             Variable_gamma: new FunctionsUpgrade("Increase the value of <b>γ</b> (you win)",
             level => Decimal.pow("eeee308", level.add(1)).mul(1e50),
-            level => level,
+            level => level.mul("eeee308"),
             {getEffectDisplay: effectDisplayTemplates.numberStandard(3, "",)}
             ),
             ResourceMultipliersBasedOnLayers: new FunctionsUpgrade("All Resource Multipliers are stronger based on Layer you currently on",
