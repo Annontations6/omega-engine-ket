@@ -1,6 +1,6 @@
 var mod = {
     primaryName: "ΩL",
-    secondaryName: " EZ",
+    secondaryName: " EZ Ket",
     version: "1.4",
     engineVer: "0.2.3", //DO NOT MODIFY
     debugMode: true,
@@ -13,11 +13,11 @@ var mod = {
         ["eXPerience", "css/themes/experience.css"]
     ],
     layerNames: [
-        ["Ω-Lλγers",
+        ["Œ-Lλγers",
         [
-            "αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ",
-            "ψϝϛͱϻϙͳϸ",
-            ["Ʊ", "Ʊ<sup>2</sup>","Ʊ<sup>3</sup>","Ʊ<sup>2<sup>2</sup></sup>"]
+            "!#$%&$Œ",
+            "<h1>&|&<h1>",
+            ["{Œ}", "α","β","⸙"]
         ]],
         ["Alphabet",
         [
