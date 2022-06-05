@@ -29,8 +29,8 @@ class FunctionsLayer
             level => level,
             {getEffectDisplay: effectDisplayTemplates.numberStandard(3, "",)}
             ),
-            Variable_gamma: new FunctionsUpgrade("Increase the value of <b>γ</b>",
-            level => Decimal.pow(1e30, level.add(1)).mul(1e50),
+            Variable_gamma: new FunctionsUpgrade("Increase the value of <b>γ</b> (you win)",
+            level => Decimal.pow("eeee308", level.add(1)).mul(1e50),
             level => level,
             {getEffectDisplay: effectDisplayTemplates.numberStandard(3, "",)}
             ),
@@ -45,13 +45,13 @@ class FunctionsLayer
             {getEffectDisplay: effectDisplayTemplates.numberStandard(3, "x")}
             ),
             MoreLayerCoins: new FunctionsUpgrade("Gain more Layer Coins on restack",
-            level => new Decimal (1e10).pow(Decimal.pow(1.6, level)),
-            level => Decimal.add(1, level).pow(level.add(1).log(10).add(1)).pow(8),
+            level => new Decimal (1e10).pow(Decimal.pow(2, level)),
+            level => Decimal.add(1, level).pow(level.add(1).log(10).add(1)).pow(1e15),
             {getEffectDisplay: effectDisplayTemplates.numberStandard(3, "^")}
             ),
             CostDivider: new FunctionsUpgrade("Divide the cost of all resource multipliers and powerers",
-            level => new Decimal (1e30).pow(Decimal.pow(1.25, level.pow(1.2))),
-            level => new Decimal (8).pow(level.pow(0.8)).mul(100).floor().div(100),
+            level => new Decimal ("1e200").pow(Decimal.pow(1.25, level.pow(1.2))),
+            level => new Decimal ("1ee98654").pow(level.pow(0.8)).mul(100).floor().div(100),
             {getEffectDisplay: effectDisplayTemplates.numberStandard(3, "÷")}
             ),
         }
