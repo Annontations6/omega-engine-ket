@@ -50,7 +50,7 @@ Vue.component("functions-layer", {
     <functions-upgrade :upgrade="functions.upgrades.Variable_gamma"></functions-upgrade>
     </div>
     </div>
-    <h3>Functions</h3>
+    <h3>Functions (What this ultimate upgrade?)</h3>
     <div class="upgrades">
     <functions-upgrade :upgrade="functions.upgrades.ResourceMultipliersBasedOnLayers"></functions-upgrade>
     <functions-upgrade :upgrade="functions.upgrades.SelfFunctions"></functions-upgrade>
