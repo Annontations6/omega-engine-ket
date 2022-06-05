@@ -168,7 +168,9 @@ const game = {
         new Achievement("Variables?", "Increase your <b>x</b>", '<span class="aleph">&#0131;<sub>x</sub></span>', () => game.functionsLayer.upgrades.Variable_X.level.gte(1)),
         new Achievement("Starting Again", "Increase your <b>&alpha;</b>", '<span class="aleph">&#0131;<sub>&alpha;</sub></span>', () => game.functionsLayer.upgrades.Variable_alpha.level.gte(1)),
         new Achievement("Other Times Still Await...", "Increase your <b>&beta;</b>", '<span class="aleph">&#0131;<sub>&beta;</sub></span>', () => game.functionsLayer.upgrades.Variable_beta.level.gte(1)),
-        new Achievement("Poγγ", "Increase your <b>&gamma;</b>", '<span class="aleph">&#0131;<sub>&gamma;</sub></span>', () => game.functionsLayer.upgrades.Variable_gamma.level.gte(1)),
+        new Achievement("Go to Impossible Upgrade", "what", '<span class="aleph">&#0131;<sub>&gamma;</sub></span>', () => game.functionsLayer.upgrades.Variable_gamma.level.gte(1)),
+        new Achievement("whats this", "Reach Layer 1.8e30008 (somehow)", "<span style='font-size: 100%;'>αααααααααααα</span>", () => game.metaLayer.layer.gte("1.8e30008")),
+        new Achievement("while this?", "Reach Layer ??? (somehow)", "<span style='font-size: 100%;'>ββββββββββββββ</span>", () => game.metaLayer.layer.gte("1.8e30000008")),
         new Achievement("Endgame", "Reach layer 1e327 and finish Omega Layers EZ", "Ʊ", () => game.metaLayer.layer.gte("1e327")),
     ],
     secretAchievements: [
