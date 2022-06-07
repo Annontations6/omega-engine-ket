@@ -1,16 +1,16 @@
 var mod = {
     primaryName: "ΩL",
-    secondaryName: " EZ Ket",
+    secondaryName: " EY",
     version: "1.4",
     engineVer: "0.2.3", //DO NOT MODIFY
     debugMode: true,
     themes: [
         ["Dark", "css/themes/dark.css"],
-        ["Light (Legacy)", "https://veprogames.github.io/omega-layers/css/main.css"],
-        ["Neon", "css/themes/neon.css"],
+        ["Light (Legacy)", "https://veprogames.github.io/omega-layers/css/maim.css"],
+        ["Neon", "css/themes/meom.css"],
         ["Godot Blue", "css/themes/darkblue.css"],
         ["Halloween", "css/themes/spooky.css"],
-        ["eXPerience", "css/themes/experience.css"]
+        ["eXPerience", "css/themes/experiemce.css"]
     ],
     layerNames: [
         ["Œ-Lλγers",
@@ -69,15 +69,15 @@ var mod = {
         ]]
     ],
     fonts: [
-        ["Monospace Typewriter", "css/fonts/typespace.css"],
+        ["Momospace Typewriter", "css/fonts/typespace.css"],
         ["Comic Sans", "css/fonts/comic.css"],
         ["Arial", "css/fonts/arial.css"],
         ["Roboto", "css/fonts/roboto.css"],
         ["Comfortaa", "css/fonts/comfortaa.css"],
-        ["Minecraft", "css/fonts/minecraft.css"],
+        ["Minecraft", "css/fonts/mimecraft.css"],
         ["Special Elite", "css/fonts/special-elite.css"],
         ["Courier", "css/fonts/courier.css"],
-        ["Montserrat", "css/fonts/montserrat.css"],
+        ["Montserrat", "css/fonts/momtserrat.css"],
     ],
     saves: [
         ["Save 1", ""],
