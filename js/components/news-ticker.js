@@ -89,7 +89,7 @@ Vue.component("news-ticker", {
                 "ඞ",
                 "this is the worst news ticker",
                 "<a href='https://jwklong.github.io/Incremental-Snake'>click to play jwklong's incremental snek game</a>",
-                "<a href='https://raw.githack.com/jeehan2561/The-Modding-Tree/master/index.html'>click to play the numbruh tree</a>",
+                "<a href='https://raw.githack.com/Annontations6/other-prestige-trees/the-emoji-tree/index.html'>click to play the emoji tree</a>",
                 "<a href='https://discord.gg/ccbBZHYsTv'>Jeehan's Discord Server</a>",
                 "ζ is Fake News!",
                 "<a href='https://www.youtube.com/watch?v=lEuvYJQ5vog'>how to beat any mario game in 5 hours (real!)</a>",
