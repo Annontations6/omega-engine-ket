@@ -138,6 +138,7 @@ const game = {
         new Achievement("H λ l f L i f e  C o n f i r m e d !", "Go &lambda;", "&lambda;", () => game.layers[10] && game.layers[10].timesReset > 0),
         new Achievement("Double Logarithms", "Gain ee15.95 &alpha;", "&alpha;", () => game.layers[0] && game.layers[0].resource.gte("1e9e15")),
         new Achievement("Coefficient of Static Friction", "Go &mu;", "&mu;", () => game.layers[11] && game.layers[11].timesReset > 0),
+        new Achievement("Equal?", "Gain ee18.53 &alpha;", "<img alt=\"LC\" class=\"inline\" src=\"images/Screenshot_2022.06.11_20.51.32.911.png\"/>", () => game.layers[0] && game.layers[0].resource.gte("ee18.535")),
         new Achievement("νeprogames!", "Go &nu;", "&nu;", () => game.layers[12] && game.layers[12].timesReset > 0),
         new Achievement("A Slice of Pi", "Go &pi;", "&pi;", () => game.layers[15] && game.layers[15].timesReset > 0),
         new Achievement("Torque", "Go &tau;", "&tau;", () => game.layers[18] && game.layers[18].timesReset > 0),
