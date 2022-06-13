@@ -229,7 +229,7 @@ var getQ2 = (level) => BigNumber.TWO.pow(level);
 var getC1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 1);
 var getC2 = (level) => BigNumber.TWO.pow(level);
 var getC3 = (level) => BigNumber.THREE.pow(level);
-var getQ1 = (level) => BigNumber.from(Math.log2(level + 1) + 1)
+var getQ3 = (level) => BigNumber.from(Math.log2(level + 1) + 1)
 var getQ1Exp = (level) => BigNumber.from(1 + level * 0.05);
 var getC2Exp = (level) => BigNumber.from(1 + level * 0.5);
 var getN = (level) => BigNumber.from(level + 1);
