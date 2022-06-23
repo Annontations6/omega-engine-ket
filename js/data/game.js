@@ -91,7 +91,8 @@ const game = {
     },
     achievements: [
         new Achievement("You played!", "If you dont have this, you shouldn't exist", "<span>&Omega;<sub>EZ</sub></span>", () => true),
-        new Achievement("Starting out", "Gain 1 &alpha;", "&alpha;", () => game.layers[0] && game.layers[0].resource.gte(1)),
+        new Achievement("Can do minute", "Gain 60 &alpha;", "<img alt=\"LC\" class=\"inline\" src=\"images/m.png\"/>", () => game.layers[0] && game.layers[0].resource.gte("60")),
+        new Achievement("Starting Out", "Gain 1 &alpha;", "&alpha;", () => game.layers[0] && game.layers[0].resource.gte(1)),
         new Achievement("The beginning of Idling", "Buy 1 <span>&alpha;<sub>1</sub></span> Generator", "<span>&alpha;<sub>1</sub></span>", () => game.layers[0] && game.layers[0].generators[0].bought.gt(0)),
         new Achievement("Polynomial growth", "Buy 1 <span>&alpha;<sub>2</sub></span> Generator", "<span>&alpha;<sub>2</sub></span>", () => game.layers[0] && game.layers[0].generators[1].bought.gt(0)),
         new Achievement("Another polynomial growth", "Buy 1 <span>&alpha;<sub>3</sub></span> Generator", "<span>&alpha;<sub>3</sub></span>", () => game.layers[0] && game.layers[0].generators[2].bought.gt(0)),
