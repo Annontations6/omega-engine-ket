@@ -83,9 +83,30 @@ var init = () => {
         a2Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
 
+    {
+        c1Exp = theory.createMilestoneUpgrade(1, 5);
+        c1Exp.description = Localization.getUpgradeIncCustomExpDesc("c_1", "0.1");
+        c1Exp.info = Localization.getUpgradeIncCustomExpInfo("c_1", "0.1");
+        c1Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
+    }
+
+    {
+        c3Exp = theory.createMilestoneUpgrade(2, 2);
+        c3Exp.description = Localization.getUpgradeIncCustomExpDesc("c_3", "0.2");
+        c3Exp.info = Localization.getUpgradeIncCustomExpInfo("c_3", "0.2");
+        c3Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
+    }
+
     /////////////////
     //// Achievements
     achievement1 = theory.createAchievement(0, "You Played!", "wowoowo", () => true);
+
+    updateAvailability();
+}
+
+var updateAvailability = () => {
+    c1Exp.isAvailable = a2Exp.level > 0;
+    c3Exp.isAvailable = a2Exp.level > 0;
 }
 
 var tick = (elapsedTime, multiplier) => {
@@ -94,9 +115,9 @@ var tick = (elapsedTime, multiplier) => {
     currency.value += dt * bonus * getA1(a1.level) *
                                    getA2(a2.level).pow(getA2Exponent(a2Exp.level)) *
                                    getA3(a3.level) *
-                                   getC1(c1.level) *
+                                   getC1(c1.level).pow(getC1Exponent(c1Exp.level)) *
                                    getC2(c2.level) *
-                                   getC3(c3.level);
+                                   getC3(c3.level).pow(getC3Exponent(c3Exp.level));
 }
 
 var getPrimaryEquation = () => {
@@ -111,16 +132,25 @@ var getPrimaryEquation = () => {
 
     result += "c_1"
 
+    if (c1Exp.level == 1) result += "^{1.1}";
+    if (c1Exp.level == 2) result += "^{1.2}";
+    if (c1Exp.level == 3) result += "^{1.3}";
+    if (c1Exp.level == 4) result += "^{1.4}";
+    if (c1Exp.level == 5) result += "^{1.5}";
+
     result += "c_2"
 
     result += "c_3"
+
+    if (c3Exp.level == 1) result += "^{1.2}";
+    if (c3Exp.level == 2) result += "^{1.4}";
 
     return result;
 }
 
 var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho";
-var getPublicationMultiplier = (tau) => tau.pow(0.1) / BigNumber.from(5000);
-var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.1}}{5000}";
+var getPublicationMultiplier = (tau) => tau.pow(0.1) / BigNumber.TWO;
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.1}}{2}";
 var getTau = () => currency.value;
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
@@ -131,5 +161,7 @@ var getC1 = (level) => BigNumber.TWO.pow(level).sqrt();
 var getC2 = (level) => Utils.getStepwisePowerSum(level, 2, 7, 0);
 var getC3 = (level) => BigNumber.TWO.pow(level).sqrt();
 var getA2Exponent = (level) => BigNumber.from(1 + 0.075 * level);
+var getC1Exponent = (level) => BigNumber.from(1 + 0.1 * level);
+var getC3Exponent = (level) => BigNumber.from(1 + 0.2 * level);
 
 init();
