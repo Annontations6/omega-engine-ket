@@ -26,9 +26,34 @@ var init = () => {
         a1.getInfo = (amount) => Utils.getMathTo(getDesc(a1.level), getDesc(a1.level + amount));
     }
 
+    // a2
+    {
+        let getDesc = (level) => "a_2=" + getA1(level).toString(0);
+        a2 = theory.createUpgrade(0, currency, new FirstFreeCost(new ExponentialCost(100, Math.log2(3))));
+        a2.getDescription = (_) => Utils.getMath(getDesc(a2.level));
+        a2.getInfo = (amount) => Utils.getMathTo(getDesc(a2.level), getDesc(a2.level + amount));
+    }
+
+    /////////////////////
+    // Permanent Upgrades
+    theory.createPublicationUpgrade(0, currency, 1e14);
+    theory.createBuyAllUpgrade(1, currency, 1e25);
+    theory.createAutoBuyerUpgrade(2, currency, 1e60);
+
+    ///////////////////////
+    //// Milestone Upgrades
+    theory.setMilestoneCost(new LinearCost(15, 30));
+
     /////////////////
     //// Achievements
     achievement1 = theory.createAchievement(0, "You Played!", "wowoowo", () => true);
+}
+
+var tick = (elapsedTime, multiplier) => {
+    let dt = BigNumber.from(elapsedTime * multiplier);
+    let bonus = theory.publicationMultiplier;
+    currency.value += dt * bonus * getA1(a1.level) *
+                                   getA2(a2.level);
 }
 
 var getPrimaryEquation = () => {
@@ -38,9 +63,12 @@ var getPrimaryEquation = () => {
 }
 
 var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho";
+var getPublicationMultiplier = (tau) => tau.pow(0.164) / BigNumber.THREE;
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.164}}{3}";
 var getTau = () => currency.value;
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
 var getA1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
+var getA2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 
 init();
