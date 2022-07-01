@@ -36,10 +36,18 @@ var init = () => {
 
     // a3
     {
-        let getDesc = (level) => "a_2=\\sqrt{" + (level + 1) + "}";
+        let getDesc = (level) => "a_3=\\sqrt{" + (level + 1) + "}";
         a3 = theory.createUpgrade(2, currency, new FirstFreeCost(new ExponentialCost(1e4, Math.log2(1.75))));
         a3.getDescription = (_) => Utils.getMath(getDesc(a3.level));
         a3.getInfo = (amount) => Utils.getMathTo(getDesc(a3.level), getDesc(a3.level + amount));
+    }
+
+    // c1
+    {
+        let getDesc = (level) => "a_2=\\sqrt{2^{" + level + "}}";
+        c1 = theory.createUpgrade(3, currency, new FirstFreeCost(new ExponentialCost(1e4, Math.log2(5))));
+        c1.getDescription = (_) => Utils.getMath(getDesc(c1.level));
+        c1.getInfo = (amount) => Utils.getMathTo(getDesc(c1.level), getDesc(c1.level + amount));
     }
 
     /////////////////////
@@ -62,7 +70,8 @@ var tick = (elapsedTime, multiplier) => {
     let bonus = theory.publicationMultiplier;
     currency.value += dt * bonus * getA1(a1.level) *
                                    getA2(a2.level) *
-                                   getA3(a3.level);
+                                   getA3(a3.level) *
+                                   getC1(c1.level);
 }
 
 var getPrimaryEquation = () => {
@@ -71,6 +80,8 @@ var getPrimaryEquation = () => {
     result += "a_2"
 
     result += "a_3"
+
+    result += "c_1"
 
     return result;
 }
@@ -83,6 +94,7 @@ var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.valu
 
 var getA1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getA2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
-var getA3 = (level) => BigNumber.from(1 + level).sqrt()
+var getA3 = (level) => BigNumber.from(1 + level).sqrt();
+var getC1 = (level) => BigNumber.TWO.pow(level).sqrt();
 
 init();
