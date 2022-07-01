@@ -44,10 +44,18 @@ var init = () => {
 
     // c1
     {
-        let getDesc = (level) => "a_2=\\sqrt{2^{" + level + "}}";
+        let getDesc = (level) => "c_1=\\sqrt{2^{" + level + "}}";
         c1 = theory.createUpgrade(3, currency, new FirstFreeCost(new ExponentialCost(1e4, Math.log2(5))));
         c1.getDescription = (_) => Utils.getMath(getDesc(c1.level));
         c1.getInfo = (amount) => Utils.getMathTo(getDesc(c1.level), getDesc(c1.level + amount));
+    }
+
+    // c2
+    {
+        let getDesc = (level) => "c_2=" + getC2(level).toString(0);
+        c2 = theory.createUpgrade(4, currency, new FirstFreeCost(new ExponentialCost(1e6, Math.log2(2))));
+        c2.getDescription = (_) => Utils.getMath(getDesc(c2.level));
+        c2.getInfo = (amount) => Utils.getMathTo(getDesc(c2.level), getDesc(c2.level + amount));
     }
 
     /////////////////////
@@ -71,7 +79,8 @@ var tick = (elapsedTime, multiplier) => {
     currency.value += dt * bonus * getA1(a1.level) *
                                    getA2(a2.level) *
                                    getA3(a3.level) *
-                                   getC1(c1.level);
+                                   getC1(c1.level) *
+                                   getC2(c2.level);
 }
 
 var getPrimaryEquation = () => {
@@ -83,12 +92,14 @@ var getPrimaryEquation = () => {
 
     result += "c_1"
 
+    result += "c_2"
+
     return result;
 }
 
 var getSecondaryEquation = () => theory.latexSymbol + "=\\max\\rho";
-var getPublicationMultiplier = (tau) => tau.pow(0.164) / BigNumber.THREE;
-var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.164}}{3}";
+var getPublicationMultiplier = (tau) => tau.pow(0.1) / BigNumber.from(5000);
+var getPublicationMultiplierFormula = (symbol) => "\\frac{{" + symbol + "}^{0.1}}{5000}";
 var getTau = () => currency.value;
 var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.value.abs()).log10().toNumber();
 
@@ -96,5 +107,6 @@ var getA1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getA2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getA3 = (level) => BigNumber.from(1 + level).sqrt();
 var getC1 = (level) => BigNumber.TWO.pow(level).sqrt();
+var getC2 = (level) => Utils.getStepwisePowerSum(level, 2, 7, 0);
 
 init();
