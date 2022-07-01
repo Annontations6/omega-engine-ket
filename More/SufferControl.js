@@ -200,5 +200,6 @@ var getA2Exponent = (level) => BigNumber.from(1 + 0.075 * level);
 var getC1Exponent = (level) => BigNumber.from(1 + 0.1 * level);
 var getC3Exponent = (level) => BigNumber.from(1 + 0.2 * level);
 var getA1Exponent = (level) => BigNumber.from(1 + 0.1 * level);
+var getA4Exponent = (level) => BigNumber.from(1 + 0.05 * level);
 
 init();
