@@ -129,6 +129,7 @@ var getA2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getA3 = (level) => BigNumber.from(1 + level).sqrt();
 var getC1 = (level) => BigNumber.TWO.pow(level).sqrt();
 var getC2 = (level) => Utils.getStepwisePowerSum(level, 2, 7, 0);
+var getC3 = (level) => BigNumber.TWO.pow(level).sqrt();
 var getA2Exponent = (level) => BigNumber.from(1 + 0.075 * level);
 
 init();
