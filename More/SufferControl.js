@@ -34,6 +34,14 @@ var init = () => {
         a2.getInfo = (amount) => Utils.getMathTo(getDesc(a2.level), getDesc(a2.level + amount));
     }
 
+    // a3
+    {
+        let getDesc = (level) => "a_2=\\sqrt{" + (level + 1) + "}";
+        a3 = theory.createUpgrade(2, currency, new FirstFreeCost(new ExponentialCost(1e4, Math.log2(1.75))));
+        a3.getDescription = (_) => Utils.getMath(getDesc(a3.level));
+        a3.getInfo = (amount) => Utils.getMathTo(getDesc(a3.level), getDesc(a3.level + amount));
+    }
+
     /////////////////////
     // Permanent Upgrades
     theory.createPublicationUpgrade(0, currency, 1e14);
@@ -53,11 +61,16 @@ var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
     currency.value += dt * bonus * getA1(a1.level) *
-                                   getA2(a2.level);
+                                   getA2(a2.level) *
+                                   getA3(a3.level);
 }
 
 var getPrimaryEquation = () => {
     let result = "\\dot{\\rho} = a_1";
+
+    result += "a_2"
+
+    result += "a_3"
 
     return result;
 }
@@ -70,5 +83,6 @@ var get2DGraphValue = () => currency.value.sign * (BigNumber.ONE + currency.valu
 
 var getA1 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getA2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
+var getA3 = (level) => BigNumber.from(1 + level).sqrt()
 
 init();
