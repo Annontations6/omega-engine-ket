@@ -58,6 +58,14 @@ var init = () => {
         c2.getInfo = (amount) => Utils.getMathTo(getDesc(c2.level), getDesc(c2.level + amount));
     }
 
+    // c3
+    {
+        let getDesc = (level) => "c_3=\\sqrt{2^{" + level + "}}";
+        c3 = theory.createUpgrade(5, currency, new FirstFreeCost(new ExponentialCost(1e10, Math.log2(5))));
+        c3.getDescription = (_) => Utils.getMath(getDesc(c3.level));
+        c3.getInfo = (amount) => Utils.getMathTo(getDesc(c3.level), getDesc(c3.level + amount));
+    }
+
     /////////////////////
     // Permanent Upgrades
     theory.createPublicationUpgrade(0, currency, 1e14);
@@ -68,6 +76,13 @@ var init = () => {
     //// Milestone Upgrades
     theory.setMilestoneCost(new LinearCost(15, 30));
 
+    {
+        a2Exp = theory.createMilestoneUpgrade(0, 2);
+        a2Exp.description = Localization.getUpgradeIncCustomExpDesc("a_2", "0.075");
+        a2Exp.info = Localization.getUpgradeIncCustomExpInfo("a_2", "0.075");
+        a2Exp.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
+    }
+
     /////////////////
     //// Achievements
     achievement1 = theory.createAchievement(0, "You Played!", "wowoowo", () => true);
@@ -77,10 +92,11 @@ var tick = (elapsedTime, multiplier) => {
     let dt = BigNumber.from(elapsedTime * multiplier);
     let bonus = theory.publicationMultiplier;
     currency.value += dt * bonus * getA1(a1.level) *
-                                   getA2(a2.level) *
+                                   getA2(a2.level).pow(getA2Exponent(a2Exp.level)) *
                                    getA3(a3.level) *
                                    getC1(c1.level) *
-                                   getC2(c2.level);
+                                   getC2(c2.level) *
+                                   getC3(c3.level);
 }
 
 var getPrimaryEquation = () => {
@@ -88,11 +104,16 @@ var getPrimaryEquation = () => {
 
     result += "a_2"
 
+    if (a2Exp.level == 1) result += "^{1.075}";
+    if (a2Exp.level == 2) result += "^{1.15}";
+
     result += "a_3"
 
     result += "c_1"
 
     result += "c_2"
+
+    result += "c_3"
 
     return result;
 }
@@ -108,5 +129,6 @@ var getA2 = (level) => Utils.getStepwisePowerSum(level, 2, 10, 0);
 var getA3 = (level) => BigNumber.from(1 + level).sqrt();
 var getC1 = (level) => BigNumber.TWO.pow(level).sqrt();
 var getC2 = (level) => Utils.getStepwisePowerSum(level, 2, 7, 0);
+var getA2Exponent = (level) => BigNumber.from(1 + 0.075 * level);
 
 init();
