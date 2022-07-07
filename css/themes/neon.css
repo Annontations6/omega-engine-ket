@@ -96,3 +96,7 @@ button, header, .news-ticker, .guide-item, .guide-item div, textarea, .automator
 img{
     filter: drop-shadow(0.04em 0.04em 0.075em white);
 }
+
+span.omega {
+   font-size:828em;   
+}
